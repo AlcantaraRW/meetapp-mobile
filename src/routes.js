@@ -15,11 +15,27 @@ export default (isSigned = false) =>
           SignIn,
           SignUp,
         }),
-        App: createBottomTabNavigator({
-          Meetups,
-          Subscriptions,
-          Profile,
-        }),
+        App: createBottomTabNavigator(
+          {
+            Meetups,
+            Subscriptions,
+            Profile,
+          },
+          {
+            resetOnBlur: true,
+            tabBarOptions: {
+              keyboardHidesTabBar: true,
+              activeTintColor: '#FFF',
+              inactiveTintColor: 'rgba(255, 255, 255, 0.6)',
+              style: {
+                height: 55,
+                backgroundColor: '#2B1A2F',
+                paddingBottom: 10,
+                paddingTop: 10,
+              },
+            },
+          },
+        ),
       },
       {
         initialRouteName: isSigned ? 'App' : 'Sign',
