@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Background from '~/components/Background';
 import logo from '~/assets/logo.png';
 
@@ -11,18 +12,23 @@ import {
   SignLink,
   SignLinkText,
 } from './styles';
+import { signUpRequest } from '~/store/modules/auth/actions';
 
 export default function SignUp({ navigation }) {
+  const dispatch = useDispatch();
+
   const emailRef = useRef();
   const passwordRef = useRef();
 
-  const loading = false;
+  const loading = useSelector(state => state.auth.loading);
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  function handleSubmit() {}
+  function handleSubmit() {
+    dispatch(signUpRequest(name, email, password));
+  }
 
   return (
     <Background>
